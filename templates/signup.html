@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="{% static 'css/auth-style.css' %}">
+        <link href="{% static 'fonts/logo.otf' %}">
+        <link rel="shortcut icon" href="{% static 'images/instagram.svg' %}" type="image/x-icon">
+    </head>
+
+    <body>
+        <div class="box">
+
+            <!-- LOGO -->
+
+            <img src="{% static '/images/logo.png' %}" alt="Instagram" height="100px" width="210px">
+
+            <p>Sign up to see photos and videos <br> from your friends</p>
+
+            <button class="btn" style="margin-bottom: 0;">Log in with Facebook</button>
+
+            <p class="para"><span>OR</span></p>
+
+            <!-- ERROR MESSAGE -->
+
+            <div>
+                {% for message in messages %}
+                <h5 style="color: red;">{{message}}</h5>
+                {% endfor %}
+            </div>
+
+            <!-- SIGN UP FORM -->
+            
+            <form method="post">
+                {% csrf_token %}
+
+                <input class="txtbx" type="text" maxlength="12" name="username" placeholder="Username" required><br>
+
+                <input class="txtbx" type="email" name="email" placeholder="Email" required><br>
+
+                <input class="txtbx" type="password" name="password" placeholder="Passowrd" required><br>
+
+                <input class="txtbx" type="password" name="password2" placeholder="Confirm Password" required><br>
+
+                <p class="sm-txt" style="margin-bottom: 3%;">
+                    People who use our service may have uploaded your contact information to Instagram. <a
+                        href="#"><span>Learn <br> More</span></a>
+                </p>
+                <p class="sm-txt">
+                    By signing up, you agree to our <a href="#">Terms</a> , <a href="#">Privacy Policy</a> and <a
+                        href="#">Cookies Policy </a>.
+                </p>
+                <input class="btn" type="submit" value="Sign Up">
+
+                <p style="font-size: 15px; margin-top: 1%;">Do you have an account?<a href="/signin">Sign In</a></p>
+            </form>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,225 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body{
+    background-color: rgba(133, 133, 133, 0.055);
+}
+
+.menus{
+    background-color: #fff;
+    position: absolute;
+    top: 3%;
+    border: 1px solid rgba(133, 133, 133, 0.582);
+    margin-left: 20%;
+    padding-top: 1%;
+}
+
+.menus h6{
+    width: 200px;
+    margin-top: 4px;
+    margin-bottom: 30px;
+}
+
+.menus a{
+    font-weight: normal;
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.menus h6 a:hover{
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+.sub-menus{
+    background-color: #fff;
+    height: 96vh;
+    position: absolute;
+    top: 3%;
+    border: 1px solid rgba(133, 133, 133, 0.582);
+    margin-left: 36.6%;
+}
+
+.sub-menus img{
+    display: inline-flex;
+    padding-top: 5%;
+    padding-left: 20%;
+    border-radius: 50%;
+}
+
+.sub-menus h5{
+    padding-left: 35%;
+    display: flex;
+    font-weight: 500;
+}
+
+.sub-menus h6 a{
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    display: flex;
+    padding-left: 35%;
+    color: rgb(0, 136, 226);
+}
+
+.sub-menus button{
+    font-size: 12px;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    display: flex;
+    padding-left: 27%;
+    color: rgb(0, 136, 226);
+}
+
+.popup{
+    border: none;
+    height: 150px;
+    width: 400px;
+    background: radial-gradient(circle at 30% 107%, #fff34a 0%, #f3e75f 5%, #ee3d2d 45%, #be1288 70%, #1045e4 90%);
+    border-radius: 6px;
+    position: absolute;
+    top: 0%;
+    left: 25%;
+    transform: translate(-50%, -50%) scale(0.1);
+    text-align: center;
+    padding: 3% 0; 
+    box-shadow: 10px 10px 28px rgb(31, 31, 31);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup .pop{
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 2%;
+    outline: none;
+    width: 350px;
+    background: #fff;
+}
+
+.sub-menus label{
+    padding-left: 15%;
+    padding-top: 15px;
+    font-weight: 500;
+}
+
+.sub-menus input, textarea{
+    border: 1px solid rgba(0, 0, 0, 0.384);
+    border-radius: 4px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    outline: none;
+    width: 400px;   
+    margin-left: 8%;
+}
+
+.sub-menus #bio{
+    text-align: left;
+}
+
+.sub-menus p{
+    margin-top: 15px;
+    padding-left: 35%;
+    font-size: 14px;
+}
+
+/* Change Profile Toggle */
+
+.popup3 .overlay3 {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    visibility: hidden;
+}
+
+.popup3 .content3 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 20px;
+    background: #fff;
+    width: 400px;
+    height: 200px;
+    z-index: 2;
+    align-items: center;
+}
+
+.popup3 #submit {
+    margin-top: 3%;
+    height: 35px;
+    width: 100px;
+    padding: 8px 36px;
+    margin-left: 36%;
+    border: none;
+    color: #fff;
+    background-color: rgb(187, 16, 255);
+    outline: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.popup3 .content3 input[type="file"] {
+    display: none;
+    margin-top: 3%;
+    margin-left: 27%;
+    margin-bottom: 5%;
+    background: none;
+}
+
+.popup3 .content3 label {
+    margin-top: 20%;
+    height: 35px;
+    width: 270px;
+    padding: 5px 57px;
+    margin-left: 17%;
+    border: none;
+    color: #fff;
+    background-color: rgb(16, 112, 255);
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.popup3 .close-btn {
+    margin-bottom: 2%;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.popup3.active .overlay3 {
+    visibility: visible;
+}
+
+.popup3.active .content3 {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}

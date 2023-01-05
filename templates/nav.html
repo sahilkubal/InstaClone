@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/home-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link href="{% static 'fonts/logo.otf' %}">   
+        <link rel="shortcut icon" href="{% static 'images/instagram.svg' %}" type="image/x-icon">
+        <style>
+            .more{
+                position: absolute;
+                top: 48%;
+                left: 1%;
+                width: 250px;
+                border-radius: 7px;
+                background-color: rgb(255, 255, 255);
+                box-shadow: 2px 2px 5px rgb(56, 56, 56);
+                visibility: hidden;
+            }
+            
+            .more .moreopt h4{
+                margin-top: 6%;
+                padding-top: 0;
+                padding-left: 0;
+                padding-bottom: 4%;
+                margin-bottom: 4%;
+                border-bottom: 2px solid rgba(170, 170, 170, 0.781);
+            }
+            
+            .more .moreopt a{
+                margin-right: 10%;
+            }
+
+            .more.active{
+                visibility: visible;
+            }
+            
+        </style>
+    </head>
+
+    <body>
+
+        <!--------------------------------------------------- TAB -------------------------------------------------------->
+
+        <div class="col-sm-2 tab">
+            <img src="{% static '/images/logo.png' %}" alt="Instagram" height="70px" width="180px">
+            <br>
+
+            <h4><i class="bi bi-house-door"></i><a href="/">Home</a></h4>
+            <h4><i class="bi bi-search ic"></i><a href="/explore">Explore</a></h4>
+            <h4><i class="bi bi-chat ic"></i><a href="#">Messages</a></h4>
+            <h4><i class="bi bi-heart ic"></i><a href="#">Notifications</a></h4>
+            <h4><i class="bi bi-plus-square ic"></i><a href="#" onclick="togglePopup()">Create</a></h4>
+            <img style="margin-top: 0%;" class="ig" src="{{user_profile.profileimg.url}}" alt="ProfileImg" height="28"
+                width="50">
+            <a href="/profile/{{user_profile.user}}" style="padding-left: 2px; margin-top: 0%;">Profile</a>
+
+
+            <!------------------------------ Popup for creating posts ------------------------------>
+
+            <div class="popup" id="popup-1">
+                <div class="overlay">
+                    <div class="content">
+                        <div class="close-btn" onclick="togglePopup()">&times;</div>
+                        <h4>Create new post</h4>
+                        <hr>
+                        <img src="{% static 'images/page.png' %}" alt="demo" height="80" width="120">
+                        <form action="upload_post" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="file" name="image-upload" id="file">
+                            <label for="file">Select from computer</label>
+
+                            <textarea name="caption" id="caption" cols="29" rows="4" placeholder="Caption"></textarea>
+                            <hr>
+                            <button id="submit" type="submit" onclick="togglePopup()">Share</button>
+                            <!-- <input type="submit" name="submit" id="submit" value="Share"> -->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!---------------------------------- More Options -------------------------------------->
+
+            <div class="more" id="popup-2">
+                <div class="moreopt">
+                    <h4><a style=" margin-right: 53%;" href="/settings">Setting</a><i class="bi bi-gear ic"></i>
+                    </h4>
+                    <h4><a style="margin-right: 55%;" href="#">Saved</a><i class="bi bi-bookmark ic"></i></h4>
+                    <h4><a style="margin-right: 16%;" href="#">Report a problem</a><i
+                            class="bi bi-exclamation-triangle ic"></i></h4>
+                    <h4><a href="#">Switch accounts</a></h4>
+                    <h4 style="border: none;"><a href="/logout">Logout</a></h4>
+                </div>
+            </div>
+
+            <!-- <i class="bi bi-circle"></i> for profile -->
+            <h4 style="padding-top: 80%;"><i class="bi bi-list"></i><a href="#" onclick="moreopt()">More</a>
+            </h4>
+
+        </div>
+        <div class="col-sm pl-0"></div>
+        <div class="clear"></div>
+
+
+        <!-------------------------------------------- Script ---------------------------------------->
+
+        <script>
+            console.log("hello")
+            function togglePopup() {
+                document.getElementById("popup-1").classList.toggle("active");
+            };
+            
+            function moreopt() {
+                document.getElementById("popup-2").classList.toggle("active");
+            };
+        </script>
+    </body>
+
+</html>

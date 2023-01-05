@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/home-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile-style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/home/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link href="{% static 'fonts/logo.otf' %}">
+        <link rel="shortcut icon" href="{% static 'images/instagram.svg' %}" type="image/x-icon">
+        <title>Profile</title>
+    </head>
+
+    <body>
+        <div class="container-fluid mt-4">
+            <div class="nav">
+                <h4><a href="/" style="text-decoration: none;"><i class="bi bi-house-door text-secondary">Home</i></a></h4>
+            </div>
+            <div class="row">
+                <div class="col-md-2 offset-md-3 img">
+                    <img src="{{user_profile.profileimg.url}}" alt="profile image" height="50" width="50">
+                </div>
+                <div class="col-md-3 offset-md-0 info">
+                    <div class="">
+                        <span>{{user_profile.user.username}}</span>
+
+                        <form action="/follow" method="post">
+                            {% csrf_token %}
+                            <div class="m">
+                                {% if user_post_length == 0 %}
+                                <b>No Post</b>
+                                {% elif user_post_length == 1 %}
+                                <b>{{user_post_length}} Post</b>
+                                {% else %}
+                                <b>{{user_post_length}} Posts</b>
+                                {% endif %}
+
+                                {% if user_followers == 0 or user_followers == 1 %}
+                                <b>{{user_followers}} Follower</b>
+                                {% else %}
+                                <b>{{user_followers}} Followers</b>
+                                {% endif %}
+
+                                <b>{{user_following}} Following</b>
+
+                                <input type="hidden" name="follower" id="" value="{{user.username}}">
+                                <input type="hidden" name="user" id="" value="{{user_object.username}}">
+
+                            </div>
+                            {% if user_object.username == user.username %}
+
+                            <a href="/settings"><button type="button">Edit Profile</button></a>
+
+                            {% else %}
+
+                            <a><button type="submit">{{button_txt}}</button></a>
+
+                            {% endif %}
+
+                        </form>
+                        <p>
+                            {{user_profile.bio}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="col-md-6 offset-md-3">
+            <hr style="height: 12px;">
+        </div>
+
+
+
+        <div class="col-md-6 offset-md-3">
+            <div class="row">
+                {% for post in user_posts reversed %}
+                <div class="col-6 col-md-4" style="padding: 2px 2px; margin: 0%; height: 200; width: 200;">
+                    <img class="image" src="{{post.image.url}}" alt="profile image"
+                        style="width: 100%; padding: 0; margin: 0;">
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+        </div>
+
+
+    </body>
+
+</html>
